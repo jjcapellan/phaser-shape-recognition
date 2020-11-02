@@ -18,7 +18,7 @@ class Demo extends Phaser.Scene {
 
     create() {
 
-        const rec = new StrokeRec(this);
+        const rec = new sRec(this);
         this.addCards(rec);
 
         let points = [];
@@ -55,8 +55,8 @@ class Demo extends Phaser.Scene {
         });
     }
 
-    addCards(strokeRec) {
-        let rec = strokeRec;
+    addCards(shapeRec) {
+        let rec = shapeRec;
         this.cards.push(
             new Card(this, 50, 0, 'spiral', rec, 'spiral', null, 10),
             new Card(this, 200, 0, 'z', rec, 'z', null, 8),
