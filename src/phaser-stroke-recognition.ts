@@ -91,9 +91,10 @@ export default class StrokeRec {
      * * maxY: bottom bound in pixels
      * * width
      * * height
-     * @param {Point[]} points Array of points (point -> { x, y})
+     * @param { Point[] } points Array of points (point -> { x, y})
+     * @returns { Bounds } Bounds of the points group
      */
-    private generateBounds(points: Point[]): Bounds {
+    private getBounds(points: Point[]): Bounds {
         // Big values ensures them will be adjusted
         const bounds: Bounds = { minX: 1000000, minY: 1000000, maxX: -1000000, maxY: -1000000, width: 0, height: 0 };
 
@@ -114,7 +115,7 @@ export default class StrokeRec {
         bounds.height = bounds.maxY - bounds.minY;
 
         return bounds;
-    }// End generateBounds
+    }// End getBounds
 
 
     /**
@@ -134,7 +135,7 @@ export default class StrokeRec {
         }
 
         const points = this.generatePoints(textureKey, frame);
-        const bounds = this.generateBounds(points);
+        const bounds = this.getBounds(points);
         const matrix: boolean[][] = getEmptyArray();
         const cellSize = (bounds.width > bounds.height) ? Math.floor(bounds.width / resolution) : Math.floor(bounds.height / resolution);
 
