@@ -1,3 +1,6 @@
+const TILE_SIZE = 48;
+const MARGIN = 20;
+
 class Card {
 
     constructor(scene, x, y, strokeName, strokeRec, textureKey, textureFrame, resolution) {
@@ -17,9 +20,9 @@ class Card {
         this.textHitRatio = null;
 
         // Draws background grid
-        this.rt = scene.add.renderTexture(this.x, this.y + 100 + 20, 48 * resolution, 48 * resolution);
+        this.rt = scene.add.renderTexture(this.x, this.y + 100 + MARGIN, TILE_SIZE * resolution, TILE_SIZE * resolution);
         // Draws hits and fails
-        this.rt2 = scene.add.renderTexture(this.x, this.y + 100 + 20, 48 * resolution, 48 * resolution);
+        this.rt2 = scene.add.renderTexture(this.x, this.y + 100 + MARGIN, TILE_SIZE * resolution, TILE_SIZE * resolution);
 
         this.init();
     }
@@ -36,8 +39,8 @@ class Card {
         this.addHitRatio();
     }
 
-    addHitRatio(){
-        this.textHitRatio = this.sc.add.text(this.x + 50, this.y + 100 + 20 + 100 + 20, '0%').setOrigin(0);
+    addHitRatio() {
+        this.textHitRatio = this.sc.add.text(this.x + 50, this.y + 2 * 100 + 2 * MARGIN, '0%').setOrigin(0);
     }
 
     addStroke() {
@@ -45,7 +48,7 @@ class Card {
         this.rec.add(t.strokeName, t.textureKey, t.textureFrame, t.resolution);
     }
 
-    check(samplePoints){
+    check(samplePoints) {
         this.lastResult = this.rec.checkStroke(samplePoints, this.strokeName);
         this.updateHitRatio();
         this.drawResult();
@@ -53,17 +56,17 @@ class Card {
 
     drawMatrix() {
 
-        const scale = this.width / (48 * this.resolution);
+        const scale = this.width / (TILE_SIZE * this.resolution);
 
-        this.matrix.forEach((row, i) => {            
+        this.matrix.forEach((row, i) => {
 
             row.forEach((cell, j) => {
                 let texture = 'grid';
                 if (cell) {
                     texture = 'mid';
                 }
-                this.rt.draw(texture, j * 48, i * 48);
-                
+                this.rt.draw(texture, j * TILE_SIZE, i * TILE_SIZE);
+
             });
         });
 
@@ -71,23 +74,23 @@ class Card {
 
     }
 
-    drawResult(){
-        const scale = this.width / (48 * this.resolution);
+    drawResult() {
+        const scale = this.width / (TILE_SIZE * this.resolution);
 
         const sampleMatrix = this.lastResult.sampleMatrix;
 
-        this.matrix.forEach((row, i) => {            
+        this.matrix.forEach((row, i) => {
 
             row.forEach((cell, j) => {
                 let texture = 'grid';
-                let sample = sampleMatrix[i][j]; 
+                let sample = sampleMatrix[i][j];
                 if (cell && sample) {
                     texture = 'hit';
-                } else if(cell !== sample){
+                } else if (cell !== sample) {
                     texture = 'fail';
                 }
-                this.rt.draw(texture, j * 48, i * 48);
-                
+                this.rt.draw(texture, j * TILE_SIZE, i * TILE_SIZE);
+
             });
         });
 
@@ -99,7 +102,7 @@ class Card {
         this.matrix = this.rec.strokes.get(this.strokeName).matrix;
     }
 
-    updateHitRatio(){
+    updateHitRatio() {
         this.textHitRatio.setText(`${Math.round(this.lastResult.hitsRatio * 100)}%`);
     }
 }
