@@ -142,42 +142,13 @@ export default class StrokeRec {
 
         return bounds;
     }// End generateBounds
-
-    /**
-     * Transforms the array of raw points into a normalized array of booleans (matrix of alphas)
-     * Each cell of the matrix represents one sector of the image. If in that sector exists some positive alpha then its value will be "true"
-     * @param {Point[]} points Array of points (point -> { x, y})
-     * @param {Bounds} bounds Bounds object ({minX, minY, maxX, maxY, width, height})
-     * @param {number} [resolution = 10] Size of the matrix(default 10x10).  High values reduce false positives and increase false negatives in stroke recognition. With low values the opposite occurs.
-     */
-    private generateMatrix(points: Point[], bounds: Bounds, resolution: number = 10): boolean[][] {
-        function getEmptyArray() {
-            let arr = [];
-            for (let i = 0; i < resolution; i++) {
-                arr.push(new Array(resolution).fill(false));
-            }
-            return arr;
-        }
-
-        const matrix: boolean[][] = getEmptyArray();
-        const cellSize = (bounds.width > bounds.height) ? Math.floor(bounds.width / resolution) : Math.floor(bounds.height / resolution);
-
-        points.forEach((point) => {
-            let row = Math.floor((point.y - bounds.minY) / cellSize);
-            let column = Math.floor((point.x - bounds.minX) / cellSize);
-            row = Math.min(row, matrix.length - 1);
-            column = Math.min(column, matrix[0].length - 1);
-            matrix[row][column] = true;
-        });
-
-        return matrix;
-    }// End generateMatrix
+    
 
     /**
      * Transforms an array of raw points or an image into a normalized array of booleans (matrix of alphas)
      * @param { string } textureKey The string key of the texture
      * @param { (string | number) } frame  String or index of the texture frame
-     * @param { number } resolution Size of the matrix (default 10x10). High values reduce false positives and increase false negatives in stroke recognition. With low values the opposite occurs.
+     * @param { number } [resolution = 10] Size of the matrix (default 10x10). High values reduce false positives and increase false negatives in stroke recognition. With low values the opposite occurs.
      * @returns { boolean[][] } Matrix of booleans. Each cell of the matrix represents one sector of the image. If in that sector exists some positive alpha then its value will be "true"
      */
     makeMatrix(textureKey: string, frame?: string | number, resolution: number = 10): boolean[][] {
