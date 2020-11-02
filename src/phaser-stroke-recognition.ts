@@ -24,7 +24,7 @@ interface Result {
 /**
  * This class provides some utilities for shape and stroke recognition.
  */
-export default class StrokeRec {
+export default class ShapeRec {
 
     private scene: Scene;
 
