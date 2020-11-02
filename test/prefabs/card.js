@@ -28,6 +28,7 @@ class Card {
         this.init();
     }
 
+
     init() {
         this.sc.add.image(this.x, this.y, this.textureKey).setOrigin(0).setTintFill(0xffffff);
 
@@ -38,9 +39,11 @@ class Card {
         this.addHitRatio();
     }
 
+
     addHitRatio() {
         this.textHitRatio = this.sc.add.text(this.x + 50, this.y + 2 * 100 + 2 * MARGIN, '0%').setOrigin(0);
     }
+
 
     check(samplePoints) {
         this.matrix2 = this.rec.makeMatrix(samplePoints, null, this.resolution);
@@ -48,6 +51,7 @@ class Card {
         this.updateHitRatio();
         this.drawResult();
     }
+
 
     drawMatrix() {
 
@@ -69,19 +73,20 @@ class Card {
 
     }
 
+
     drawResult() {
         const scale = this.width / (TILE_SIZE * this.resolution);
 
-        const sampleMatrix = this.lastResult.sampleMatrix;
+        const sampleMatrix = this.matrix2;
 
         this.matrix.forEach((row, i) => {
 
-            row.forEach((cell, j) => {
+            row.forEach((value1, j) => {
                 let texture = 'grid';
-                let sample = sampleMatrix[i][j];
-                if (cell && sample) {
+                let value2 = sampleMatrix[i][j];
+                if (value1 && value2) {
                     texture = 'hit';
-                } else if (cell !== sample) {
+                } else if (value1 !== value2) {
                     texture = 'fail';
                 }
                 this.rt.draw(texture, j * TILE_SIZE, i * TILE_SIZE);
@@ -93,9 +98,11 @@ class Card {
 
     }
 
+
     setMatrix() {
         this.matrix = this.rec.makeMatrix(this.textureKey, this.textureFrame, this.resolution);
     }
+
 
     updateHitRatio() {
         this.textHitRatio.setText(`${Math.round(this.lastResult.hitsRatio * 100)}%`);
