@@ -78,6 +78,39 @@ export default class StrokeRec {
         return {hitsRatio: hits/(hits + fails), hits: hits, fails: fails, sampleMatrix: sampleMatrix, modelMatrix: stroke.matrix};
     }
 
+    /**
+     * Test the proportion of coincidence between two 2d arrays of booleans with the same size. 
+     * Only that cells on which at least one value is "true" are evaluated.
+     * @param matrix1 First matrix to compare
+     * @param matrix2 Second matrix to compare
+     * @returns { Result } Object {hitsRatio, hits, fails}
+     */
+    test(matrix1: boolean[][], matrix2: boolean[][]): Result | null{
+        if (!matrix1 || !matrix2) {
+            return null;
+        }
+
+        let hits = 0;
+        let fails = 0;
+
+        matrix1.forEach((row, i) => {
+
+            row.forEach((value1, j) => {
+                let value2 = matrix2[i][j];
+                if (value1 && value2) {
+                    hits++;
+                } else if(value1 !== value2){
+                    fails++;
+                }
+            });
+        }); // End 2xforEach        
+
+        return {hitsRatio: hits/(hits + fails), hits: hits, fails: fails};
+    }
+
+    
+
+
 
     /**
      * Generates the bounds object with this properties (used in normalization process):
