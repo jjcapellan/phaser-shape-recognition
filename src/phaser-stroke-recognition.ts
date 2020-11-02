@@ -25,13 +25,10 @@ interface Result{
     hitsRatio: number;
     hits: number;
     fails: number;
-    sampleMatrix: boolean[][];
-    modelMatrix: boolean[][];
 }
 
 export default class StrokeRec {
     private scene: Scene;
-    strokes = new Map<string, Stroke>();
 
     constructor(scene: Scene) {
         this.scene = scene;
@@ -76,6 +73,24 @@ export default class StrokeRec {
         newStroke.matrix = matrix;
 
         this.strokes.set(name, newStroke);
+    }
+
+    private generatePoints(textureKey: string, frame?: string | number) {
+        const img = this.scene.textures.getFrame(textureKey, frame);
+        const width = img.width;
+        const height = img.height;
+
+        let points: Point[] = [];
+
+        for (let y = 0; y < height; y++) {
+            for (let x = 0; x < width; x++) {
+                if (this.scene.textures.getPixelAlpha(x, y, textureKey, frame)) {
+                    points.push({ x: x, y: y });
+                }
+            }
+        }// End 2xfor
+
+        return points;
     }
 
     /**
