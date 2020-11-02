@@ -9,13 +9,13 @@ Try demo here: https://jjcapellan.github.io/demo-phaser-shape-recognition/
 
 ## Table of contents
 * [Installation](#Installation)
- * [Browser](#Browser)
- * [From NPM](#From-NPM)
- * [Usage](#Usage) 
- * [Methods](#Methods)
- * [makeMatrix()](#makeMatrix)
- * [test()](#test)
- * [License](#License)
+  * [Browser](#Browser)
+  * [From NPM](#From-NPM)
+* [Usage](#Usage) 
+* [Methods](#Methods)
+  * [makeMatrix()](#makeMatrix)
+  * [test()](#test)
+* [License](#License)
 
 ## Installation
 ### Browser
