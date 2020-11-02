@@ -172,4 +172,29 @@ export default class StrokeRec {
 
         return matrix;
     }// End generateMatrix
+
+    makeMatrix(textureKey: string, frame: string | number, resolution: number = 10): boolean[][] {
+        function getEmptyArray() {
+            let arr = [];
+            for (let i = 0; i < resolution; i++) {
+                arr.push(new Array(resolution).fill(false));
+            }
+            return arr;
+        }
+
+        const points = this.generatePoints(textureKey, frame);
+        const bounds = this.generateBounds(points);
+        const matrix: boolean[][] = getEmptyArray();
+        const cellSize = (bounds.width > bounds.height) ? Math.floor(bounds.width / resolution) : Math.floor(bounds.height / resolution);
+
+        points.forEach((point) => {
+            let row = Math.floor((point.y - bounds.minY) / cellSize);
+            let column = Math.floor((point.x - bounds.minX) / cellSize);
+            row = Math.min(row, matrix.length - 1);
+            column = Math.min(column, matrix[0].length - 1);
+            matrix[row][column] = true;
+        });
+
+        return matrix;
+    }// End makeMatrix
 }
