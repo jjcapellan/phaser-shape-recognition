@@ -8,8 +8,8 @@
   "umd:main": "dist/phaser-shape-recognition.umd.js",
   "types": "dist/phaser-shape-recognition.d.ts",
   "scripts": {
-    "build": "microbundle -f es,cjs,umd --name sRec",
-    "build:dist": "microbundle -f es,cjs,umd --name sRec --sourcemap false",
+    "build": "microbundle -f es,cjs,umd --name ShapeRec",
+    "build:dist": "microbundle -f es,cjs,umd --name ShapeRec --sourcemap false",
     "dev": "microbundle watch"
   },
   "repository": {
