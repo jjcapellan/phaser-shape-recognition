@@ -1,7 +1,7 @@
 {
   "name": "phaser-shape-recognition",
   "version": "1.0.0",
-  "description": "Phaser class for recognition of shapes.",
+  "description": "Phaser 3 class for recognition of shapes.",
   "source": "src/phaser-shape-recognition.ts",
   "main": "dist/phaser-shape-recognition.js",
   "module": "dist/phaser-shape-recognition.esm.js",
@@ -21,6 +21,7 @@
   "bugs": {
     "url": "https://github.com/jjcapellan/phaser-shape-recognition/issues"
   },
+  "keywords":["phaser3", "phaser 3", "image recognition", "shape recognition", "recognition", "phaser class"],
   "homepage": "https://github.com/jjcapellan/phaser-shape-recognition#readme",
   "devDependencies": {
     "microbundle": "^0.12.4",
