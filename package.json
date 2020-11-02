@@ -1,26 +1,26 @@
 {
-  "name": "phaser-stroke-recognition",
+  "name": "phaser-shape-recognition",
   "version": "1.0.0",
-  "description": "Phaser class for recognition of strokes.",
-  "source": "src/phaser-stroke-recognition.ts",
-  "main": "dist/phaser-stroke-recognition.js",
-  "module": "dist/phaser-stroke-recognition.esm.js",
-  "umd:main": "dist/phaser-stroke-recognition.umd.js",
-  "types": "dist/phaser-stroke-recognition.d.ts",
+  "description": "Phaser class for recognition of shapes.",
+  "source": "src/phaser-shape-recognition.ts",
+  "main": "dist/phaser-shape-recognition.js",
+  "module": "dist/phaser-shape-recognition.esm.js",
+  "umd:main": "dist/phaser-shape-recognition.umd.js",
+  "types": "dist/phaser-shape-recognition.d.ts",
   "scripts": {
-    "build": "microbundle -f es,cjs,umd --name StrokeRec",
+    "build": "microbundle -f es,cjs,umd --name sRec",
     "dev": "microbundle watch"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jjcapellan/phaser-stroke-recognition.git"
+    "url": "git+https://github.com/jjcapellan/phaser-shape-recognition.git"
   },
   "author": "Juan Jose Capellán",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jjcapellan/phaser-stroke-recognition/issues"
+    "url": "https://github.com/jjcapellan/phaser-shape-recognition/issues"
   },
-  "homepage": "https://github.com/jjcapellan/phaser-stroke-recognition#readme",
+  "homepage": "https://github.com/jjcapellan/phaser-shape-recognition#readme",
   "devDependencies": {
     "microbundle": "^0.12.4",
     "phaser": "^3.24.1"
