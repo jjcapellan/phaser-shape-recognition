@@ -22,6 +22,9 @@ package-lock.json
 .rts2_cache_es/
 .rts2_cache_umd/
 
+#map files
+*.map
+
 
 ### vscode ###
 .vscode/*
