@@ -1,6 +1,6 @@
 {
   "name": "phaser-shape-recognition",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Phaser 3 class for recognition of shapes.",
   "source": "src/phaser-shape-recognition.ts",
   "main": "dist/phaser-shape-recognition.js",
