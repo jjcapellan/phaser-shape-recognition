@@ -30,8 +30,6 @@ class Card {
     init() {
         this.sc.add.image(this.x, this.y, this.textureKey).setOrigin(0).setTintFill(0xffffff);
 
-        this.addStroke();
-
         this.setMatrix();
 
         this.drawMatrix();
@@ -41,11 +39,6 @@ class Card {
 
     addHitRatio() {
         this.textHitRatio = this.sc.add.text(this.x + 50, this.y + 2 * 100 + 2 * MARGIN, '0%').setOrigin(0);
-    }
-
-    addStroke() {
-        let t = this;
-        this.rec.add(t.strokeName, t.textureKey, t.textureFrame, t.resolution);
     }
 
     check(samplePoints) {
@@ -99,7 +92,7 @@ class Card {
     }
 
     setMatrix() {
-        this.matrix = this.rec.strokes.get(this.strokeName).matrix;
+        this.matrix = this.rec.makeMatrix(this.textureKey, this.textureFrame, this.resolution);
     }
 
     updateHitRatio() {
