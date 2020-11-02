@@ -15,6 +15,7 @@ class Card {
 
         this.width = 100;
         this.matrix = null;
+        this.matrix2 = null;
         this.lastResult = null;
         this.hitRatio = 0;
         this.textHitRatio = null;
@@ -42,7 +43,8 @@ class Card {
     }
 
     check(samplePoints) {
-        this.lastResult = this.rec.checkStroke(samplePoints, this.strokeName);
+        this.matrix2 = this.rec.makeMatrix(samplePoints, null, this.resolution);
+        this.lastResult = this.rec.test(this.matrix, this.matrix2);
         this.updateHitRatio();
         this.drawResult();
     }
