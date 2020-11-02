@@ -21,15 +21,15 @@ Try demo here: https://jjcapellan.github.io/demo-phaser-shape-recognition/
 ### Browser
 There are two alternatives:
 * Point a script tag to the CDN link:
-```
+```html
 <script src="https://cdn.jsdelivr.net/gh/jjcapellan/phaser-shape-recognition/dist/phaser-shape-recognition.umd.js">
 ``` 
 * Download the file [phaser-shape-recognition.umd.js](https://cdn.jsdelivr.net/gh/jjcapellan/phaser-shape-recognition/dist/phaser-shape-recognition.umd.js) to your proyect folder and add a reference in your html:
-```
+```html
 <script src="localPath/phaser-shape-recognition.umd.js">
 ``` 
 Then you can access the class by the global **ShapeRec**:
-```
+```javascript
 // In your create function ...
 const shapeRec = new ShapeRec(this); 
 ```
@@ -39,8 +39,8 @@ const shapeRec = new ShapeRec(this);
 npm install phaser-shape-recognition
 ```
 Then you can acces the class as:
-* CommenJS module
-```
+* CommonJS module
+```javascript
 const ShapeRec = require('phaser-shape-recognition');
 
 // In your create function ...
@@ -48,7 +48,7 @@ const shapeRec = new ShapeRec(this);
 ```
 
 * ES6 module
-```
+```javascript
 import ShapeRec from 'phaser-shape-recognition';
 
 // In your create function ...
@@ -57,7 +57,7 @@ const shapeRec = new ShapeRec(this);
 
 ## Usage
 Example (Image vs Points comparison):
-```
+```javascript
 // In create function ...
 const shapeRec = new ShapeRec(this);
 
