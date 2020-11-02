@@ -48,23 +48,7 @@ export default class StrokeRec {
         const newStroke: Stroke = { name: name, matrix: [], resolution: resolution }
 
 
-        function generatePoints() {
-            const img = sc.textures.getFrame(key, frame);
-            const width = img.width;
-            const height = img.height;
-
-            let points: Point[] = [];
-
-            for (let y = 0; y < height; y++) {
-                for (let x = 0; x < width; x++) {
-                    if (sc.textures.getPixelAlpha(x, y, key, frame)) {
-                        points.push({ x: x, y: y });
-                    }
-                }
-            }// End 2xfor
-
-            return points;
-        }
+        
 
         const points = generatePoints();
         const bounds = this.generateBounds(points);
@@ -75,7 +59,7 @@ export default class StrokeRec {
         this.strokes.set(name, newStroke);
     }
 
-    private generatePoints(textureKey: string, frame?: string | number) {
+    private generatePoints(textureKey: string, frame?: string | number): Point[] {
         const img = this.scene.textures.getFrame(textureKey, frame);
         const width = img.width;
         const height = img.height;
