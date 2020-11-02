@@ -6,12 +6,6 @@ interface Point {
     y: number;
 }
 
-interface Stroke {
-    name: string;
-    matrix: boolean[][];
-    resolution: number;
-}
-
 interface Bounds {
     minX: number;
     minY: number;
