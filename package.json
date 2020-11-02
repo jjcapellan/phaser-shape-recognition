@@ -9,6 +9,7 @@
   "types": "dist/phaser-shape-recognition.d.ts",
   "scripts": {
     "build": "microbundle -f es,cjs,umd --name sRec",
+    "build:dist": "microbundle -f es,cjs,umd --name sRec --sourcemap false",
     "dev": "microbundle watch"
   },
   "repository": {
