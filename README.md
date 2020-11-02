@@ -1,6 +1,6 @@
 # Phaser shape recognition
 This class provides some utilities for shape and stroke recognition using [Phaser 3](http://phaser.io/).  
-Can be used to process image data and feed neural networks.
+Can be used to process image data and feed neural networks.  
 Try demo here: https://jjcapellan.github.io/demo-phaser-shape-recognition/
 
 <p align="center">
@@ -84,7 +84,8 @@ Transforms an array of raw points or an image into a "normalized" array of boole
 Params:
 * **source** { string | Point[]} Can be the string key of a texture or an array of points (Ex: [{x: 2, y:2}, {x:3, y:5}, ...])
 * **frame** { (string | number) } String or index of the texture frame. Not used if source is an array.
-* **[resolution = 10]** { number } Size of the matrix. High values reduce false positives and increase false negatives in shape recognition. With low values the opposite occurs.  
+* **[resolution = 10]** { number } Size of the matrix. High values reduce false positives and increase false negatives in shape recognition. With low values the opposite occurs.    
+
 Returns:
 * { boolean[][] } Matrix of booleans. Each cell of the matrix represents one sector of the image. If in that sector exists some positive alpha then its value will be "true".
 
@@ -94,7 +95,8 @@ Compares two matrix of same size:
 * matrix1\[i]\[j] != matrix2\[i]\[j] ---> FAIL
 Params:
 * **matrix1** { boolean[][] } Matrix of first shape
-* **matrix2** { boolean[][] } Matrix of second shape  
+* **matrix2** { boolean[][] } Matrix of second shape    
+
 Returns:
 * { number } Number between 0 and 1: hits / (hits + fails)
 
