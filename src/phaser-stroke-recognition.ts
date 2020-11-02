@@ -34,31 +34,6 @@ export default class StrokeRec {
         this.scene = scene;
     }
 
-
-    /**
-     * Generates a "normalized" array of 10x10 from an image.
-     * This image must be a black stroke over a transparent background.
-     * @param {string} name Unique name for this stroke
-     * @param {string} key The string key of the texture
-     * @param {(string | number)} [frame] String or index of the texture frame
-     * @param {number} [resolution = 10] Size of the matrix (default 10x10). High values reduce false positives and increase false negatives in stroke recognition. With low values the opposite occurs.
-     */
-    add(name: string, key: string, frame?: string | number, resolution: number = 10) {
-        const sc = this.scene;
-        const newStroke: Stroke = { name: name, matrix: [], resolution: resolution }
-
-
-        
-
-        const points = generatePoints();
-        const bounds = this.generateBounds(points);
-        const matrix = this.generateMatrix(points, bounds, resolution);
-
-        newStroke.matrix = matrix;
-
-        this.strokes.set(name, newStroke);
-    }
-
     private generatePoints(textureKey: string, frame?: string | number): Point[] {
         const img = this.scene.textures.getFrame(textureKey, frame);
         const width = img.width;
@@ -122,7 +97,7 @@ export default class StrokeRec {
      */
     private generateBounds(points: Point[]): Bounds {
         // Big values ensures them will be adjusted
-        const bounds: Bounds = { minX: 100000, minY: 100000, maxX: -100000, maxY: -100000, width: 0, height: 0 };
+        const bounds: Bounds = { minX: 1000000, minY: 1000000, maxX: -1000000, maxY: -1000000, width: 0, height: 0 };
 
         points.forEach((point) => {
             if (point.x < bounds.minX) {
