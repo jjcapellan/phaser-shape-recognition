@@ -15,18 +15,23 @@ interface Bounds {
     height: number;
 }
 
-interface Result{
+interface Result {
     hitsRatio: number;
     hits: number;
     fails: number;
 }
 
+/**
+ * This class provides some utilities for shape and stroke recognition.
+ */
 export default class StrokeRec {
+
     private scene: Scene;
 
     constructor(scene: Scene) {
         this.scene = scene;
     }
+
 
     private generatePoints(textureKey: string, frame?: string | number): Point[] {
         const img = this.scene.textures.getFrame(textureKey, frame);
@@ -46,6 +51,7 @@ export default class StrokeRec {
         return points;
     }
 
+
     /**
      * Test the proportion of coincidence between two 2d arrays of booleans with the same size. 
      * Only that cells on which at least one value is "true" are evaluated.
@@ -53,7 +59,7 @@ export default class StrokeRec {
      * @param matrix2 Second matrix to compare
      * @returns { Result } Object {hitsRatio, hits, fails}
      */
-    test(matrix1: boolean[][], matrix2: boolean[][]): Result | null{
+    test(matrix1: boolean[][], matrix2: boolean[][]): Result | null {
         if (!matrix1 || !matrix2) {
             return null;
         }
@@ -67,17 +73,14 @@ export default class StrokeRec {
                 let value2 = matrix2[i][j];
                 if (value1 && value2) {
                     hits++;
-                } else if(value1 !== value2){
+                } else if (value1 !== value2) {
                     fails++;
                 }
             });
         }); // End 2xforEach        
 
-        return {hitsRatio: hits/(hits + fails), hits: hits, fails: fails};
+        return { hitsRatio: hits / (hits + fails), hits: hits, fails: fails };
     }
-
-    
-
 
 
     /**
@@ -112,7 +115,7 @@ export default class StrokeRec {
 
         return bounds;
     }// End generateBounds
-    
+
 
     /**
      * Transforms an array of raw points or an image into a normalized array of booleans (matrix of alphas)
