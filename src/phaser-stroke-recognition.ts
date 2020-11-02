@@ -47,38 +47,6 @@ export default class StrokeRec {
     }
 
     /**
-     * 
-     * @param {Point[]} samplePoints Array of points ({x,y}) of the stroke to compare
-     * @param {string} strokeName Name of the model stroke
-     * @returns {Result} Object width results data
-     */
-    checkStroke(samplePoints: Point[], strokeName: string): Result | null{
-        const stroke = this.strokes.get(strokeName);
-        if (!stroke) {
-            return null;
-        }
-        const sampleBounds = this.generateBounds(samplePoints);
-        const sampleMatrix = this.generateMatrix(samplePoints, sampleBounds, stroke.resolution);
-
-        let hits = 0;
-        let fails = 0;
-
-        stroke.matrix.forEach((row, i) => {
-
-            row.forEach((cell, j) => {
-                let sample = sampleMatrix[i][j];
-                if (cell && sample) {
-                    hits++;
-                } else if(cell !== sample){
-                    fails++;
-                }
-            });
-        }); // End 2xforEach        
-
-        return {hitsRatio: hits/(hits + fails), hits: hits, fails: fails, sampleMatrix: sampleMatrix, modelMatrix: stroke.matrix};
-    }
-
-    /**
      * Test the proportion of coincidence between two 2d arrays of booleans with the same size. 
      * Only that cells on which at least one value is "true" are evaluated.
      * @param matrix1 First matrix to compare
