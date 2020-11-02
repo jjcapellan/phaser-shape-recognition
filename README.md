@@ -80,7 +80,7 @@ let similitude = shapeRec.test(imageMatrix, pointsMatrix);
 
 ## Methods
 ### <a id="makematrix"></a> makeMatrix(source, frame, resolution)
-Transforms an array of raw points or an image into a "normalized" array of booleans (**matrix**)
+Transforms an array of raw points or an image into a "normalized" array of booleans (**matrix**)  
 Params:
 * **source** { string | Point[]} Can be the string key of a texture or an array of points (Ex: [{x: 2, y:2}, {x:3, y:5}, ...])
 * **frame** { (string | number) } String or index of the texture frame. Not used if source is an array.
@@ -92,7 +92,7 @@ Returns:
 ### <a id="test"></a> test(matrix1, matrix2)
 Compares two matrix of same size: 
 * matrix1\[i]\[j] == matrix2\[i]\[j] ---> HIT  
-* matrix1\[i]\[j] != matrix2\[i]\[j] ---> FAIL
+* matrix1\[i]\[j] != matrix2\[i]\[j] ---> FAIL  
 Params:
 * **matrix1** { boolean[][] } Matrix of first shape
 * **matrix2** { boolean[][] } Matrix of second shape    
