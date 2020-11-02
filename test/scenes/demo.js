@@ -18,7 +18,7 @@ class Demo extends Phaser.Scene {
 
     create() {
 
-        const rec = new sRec(this);
+        const rec = new ShapeRec(this);
         this.addCards(rec);
 
         let points = [];
