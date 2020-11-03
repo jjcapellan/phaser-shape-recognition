@@ -96,7 +96,7 @@ Compares two matrix of same size:
 Params:
 * **matrix1** { boolean[][] } Matrix of first shape
 * **matrix2** { boolean[][] } Matrix of second shape   
-* **checkNeighbors { boolean } Fail is not added if there are some neighbor cell with "true"
+* **checkNeighbors** { boolean } Fail is not added if there are some neighbor cell with "true"
 
 Returns:
 * { number } Number between 0 and 1: hits / (hits + fails)
