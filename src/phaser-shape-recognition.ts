@@ -65,20 +65,20 @@ export default class ShapeRec {
             return null;
         }
 
-        function getNeighbors(row: number, col: number): number{
+        function getNeighbors(row: number, col: number): number {
             let m1: boolean[][];
-            let m2:boolean[][];
+            let m2: boolean[][];
 
             m1 = matrix1[row][col] ? matrix1 : matrix2;
             m2 = matrix1[row][col] ? matrix2 : matrix1;
 
             let neighbors = 0;
 
-            for(let dy = -1; dy < 2; dy++){
-                for(let dx = -1; dx < 2; dx++){
+            for (let dy = -1; dy < 2; dy++) {
+                for (let dx = -1; dx < 2; dx++) {
                     let nrow = row + dy;
                     let ncol = col + dx;
-                    if(nrow >= 0 && nrow < m2.length && ncol >= 0 && ncol < m2[0].length && (nrow != row || ncol != col)){
+                    if (nrow >= 0 && nrow < m2.length && ncol >= 0 && ncol < m2[0].length && (nrow != row || ncol != col)) {
                         neighbors += m2[nrow][ncol] ? 1 : 0;
                     }
                 }
@@ -99,11 +99,11 @@ export default class ShapeRec {
                     hits++;
                 } else if (value1 !== value2) {
                     fails++;
-                    if(checkNeighbors){
+                    if (checkNeighbors) {
                         let neighbors = getNeighbors(i, j);
-                        if(neighbors){
+                        if (neighbors) {
                             fails--;
-                            hits += neighbors/8;
+                            hits += neighbors / 8;
                         }
                     }
                 }
@@ -132,12 +132,17 @@ export default class ShapeRec {
         points.forEach((point) => {
             if (point.x < bounds.minX) {
                 bounds.minX = point.x;
-            } else if (point.x > bounds.maxX) {
-                bounds.maxX = point.x;
             }
             if (point.y < bounds.minY) {
                 bounds.minY = point.y;
-            } else if (point.y > bounds.maxY) {
+            }
+        })
+
+        points.forEach((point) => {
+            if (point.x > bounds.maxX) {
+                bounds.maxX = point.x;
+            }
+            if (point.y > bounds.maxY) {
                 bounds.maxY = point.y;
             }
         });
