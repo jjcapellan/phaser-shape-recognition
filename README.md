@@ -89,13 +89,14 @@ Params:
 Returns:
 * { boolean[][] } Matrix of booleans. Each cell of the matrix represents one sector of the image. If in that sector exists some positive alpha then its value will be "true".
 
-### <a id="test"></a> test(matrix1, matrix2)
+### <a id="test"></a> test(matrix1, matrix2, checkNeighbors)
 Compares two matrix of same size: 
 * matrix1\[i]\[j] == matrix2\[i]\[j] ---> HIT  
 * matrix1\[i]\[j] != matrix2\[i]\[j] ---> FAIL  
 Params:
 * **matrix1** { boolean[][] } Matrix of first shape
-* **matrix2** { boolean[][] } Matrix of second shape    
+* **matrix2** { boolean[][] } Matrix of second shape   
+* **checkNeighbors { boolean } Fail is not added if there are some neighbor cell with "true"
 
 Returns:
 * { number } Number between 0 and 1: hits / (hits + fails)
