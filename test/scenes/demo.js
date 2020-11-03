@@ -18,8 +18,13 @@ class Demo extends Phaser.Scene {
 
     create() {
 
+        this.customEmitter = new Phaser.Events.EventEmitter();
+
+        this.addChkNeighbors();
+
+
         const rec = new ShapeRec(this);
-        this.addCards(rec);
+        this.addCards(rec, this.chk_neighbors.value);
 
         let points = [];
 
@@ -53,19 +58,29 @@ class Demo extends Phaser.Scene {
 
             this.checkStroke(points);
         });
+
+        this.customEmitter.on('chk_neiborgs', () =>{
+            this.cards.forEach((card) => {
+                card.neighbors = this.chk_neighbors.value;
+            })
+        }, this);
     }
 
-    addCards(shapeRec) {
+    addChkNeighbors() {
+        this.chk_neighbors = this.add.existing(new CheckBox(this, 20, 550, 'chk_neiborgs', { color: '0xdddddd', label: { text: 'Activate neighbors', fontSize: 14 } })).setOrigin(0, 0);
+    }
+
+    addCards(shapeRec, useNeighbors) {
         let rec = shapeRec;
         this.cards.push(
-            new Card(this, 50, 0, 'spiral', rec, 'spiral', null, 10),
-            new Card(this, 200, 0, 'z', rec, 'z', null, 8),
-            new Card(this, 350, 0, 'v', rec, 'v', null, 8),
-            new Card(this, 500, 0, 'vline', rec, 'vline', null, 8),
-            new Card(this, 650, 0, 'hline', rec, 'hline', null, 8));
+            new Card(this, 50, 0, 'spiral', rec, 'spiral', null, {res: 10, neighbors: useNeighbors}),
+            new Card(this, 200, 0, 'z', rec, 'z', null, {res: 8, neighbors: useNeighbors}),
+            new Card(this, 350, 0, 'v', rec, 'v', null, {res: 8, neighbors: useNeighbors}),
+            new Card(this, 500, 0, 'vline', rec, 'vline', null, {res: 8, neighbors: useNeighbors}),
+            new Card(this, 650, 0, 'hline', rec, 'hline', null, {res: 8, neighbors: useNeighbors}));
     }
 
-    checkStroke(points){
+    checkStroke(points) {
         this.cards.forEach((card) => {
             card.check(points);
         });

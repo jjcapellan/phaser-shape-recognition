@@ -3,7 +3,7 @@ const MARGIN = 20;
 
 class Card {
 
-    constructor(scene, x, y, strokeName, strokeRec, textureKey, textureFrame, resolution) {
+    constructor(scene, x, y, strokeName, strokeRec, textureKey, textureFrame, {res, neighbors} = {}) {
         this.sc = scene;
         this.x = x;
         this.y = y;
@@ -11,7 +11,8 @@ class Card {
         this.rec = strokeRec;
         this.textureKey = textureKey;
         this.textureFrame = textureFrame;
-        this.resolution = resolution;
+        this.resolution = res || 10;
+        this.neighbors = neighbors || false;
 
         this.width = 100;
         this.matrix = null;
@@ -21,9 +22,9 @@ class Card {
         this.textHitRatio = null;
 
         // Draws background grid
-        this.rt = scene.add.renderTexture(this.x, this.y + 100 + MARGIN, TILE_SIZE * resolution, TILE_SIZE * resolution);
+        this.rt = scene.add.renderTexture(this.x, this.y + 100 + MARGIN, TILE_SIZE * res, TILE_SIZE * res);
         // Draws hits and fails
-        this.rt2 = scene.add.renderTexture(this.x, this.y + 100 + MARGIN, TILE_SIZE * resolution, TILE_SIZE * resolution);
+        this.rt2 = scene.add.renderTexture(this.x, this.y + 100 + MARGIN, TILE_SIZE * res, TILE_SIZE * res);
 
         this.init();
     }
@@ -47,7 +48,7 @@ class Card {
 
     check(samplePoints) {
         this.matrix2 = this.rec.makeMatrix(samplePoints, null, this.resolution);
-        this.lastResult = this.rec.test(this.matrix, this.matrix2, true);
+        this.lastResult = this.rec.test(this.matrix, this.matrix2, this.neighbors);
         this.updateHitRatio();
         this.drawResult();
     }
