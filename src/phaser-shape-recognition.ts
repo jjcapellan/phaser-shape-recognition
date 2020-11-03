@@ -55,13 +55,37 @@ export default class ShapeRec {
     /**
      * Test the proportion of coincidence between two 2d arrays of booleans with the same size. 
      * Only that cells on which at least one value is "true" are evaluated.
-     * @param matrix1 First matrix to compare
+     * @param {boolean[][]} matrix1 First matrix to compare
      * @param matrix2 Second matrix to compare
+     * @param { boolean[][] } checkNeighbors Fail is not added if there are some neighbor cell with "true"
      * @returns { Result } Object {hitsRatio, hits, fails}
      */
-    test(matrix1: boolean[][], matrix2: boolean[][]): Result | null {
+    test(matrix1: boolean[][], matrix2: boolean[][], checkNeighbors: boolean): Result | null {
         if (!matrix1 || !matrix2) {
             return null;
+        }
+
+        function getNeighbors(row: number, col: number): number{
+            let m1: boolean[][];
+            let m2:boolean[][];
+
+            m1 = matrix1[row][col] ? matrix1 : matrix2;
+            m2 = matrix1[row][col] ? matrix2 : matrix1;
+
+            let neighbors = 0;
+
+            for(let dy = -1; dy < 2; dy++){
+                for(let dx = -1; dx < 2; dx++){
+                    let nrow = row + dy;
+                    let ncol = col + dx;
+                    if(nrow >= 0 && nrow < m2.length && ncol >= 0 && ncol < m2[0].length && (nrow != row || ncol != col)){
+                        neighbors += m2[nrow][ncol] ? 1 : 0;
+                    }
+                }
+            }
+
+            return neighbors;
+
         }
 
         let hits = 0;
@@ -75,6 +99,13 @@ export default class ShapeRec {
                     hits++;
                 } else if (value1 !== value2) {
                     fails++;
+                    if(checkNeighbors){
+                        let neighbors = getNeighbors(i, j);
+                        if(neighbors){
+                            fails--;
+                            hits += neighbors/8;
+                        }
+                    }
                 }
             });
         }); // End 2xforEach        

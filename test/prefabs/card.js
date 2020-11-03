@@ -47,7 +47,7 @@ class Card {
 
     check(samplePoints) {
         this.matrix2 = this.rec.makeMatrix(samplePoints, null, this.resolution);
-        this.lastResult = this.rec.test(this.matrix, this.matrix2);
+        this.lastResult = this.rec.test(this.matrix, this.matrix2, true);
         this.updateHitRatio();
         this.drawResult();
     }
