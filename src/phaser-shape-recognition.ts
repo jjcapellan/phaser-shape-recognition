@@ -172,6 +172,8 @@ export default class ShapeRec {
 
         const points = (typeof source == 'string') ? this.generatePoints(source, frame) : source;
         const bounds = this.getBounds(points);
+        this.normalizeAspectRatio(points, bounds);
+
         const matrix: boolean[][] = getEmptyArray();
         const cellSize = (bounds.width > bounds.height) ? Math.floor(bounds.width / resolution) : Math.floor(bounds.height / resolution);
 
@@ -185,4 +187,21 @@ export default class ShapeRec {
 
         return matrix;
     }// End makeMatrix
+
+    private normalizeAspectRatio(points: Point[], bounds: Bounds){
+        const width = bounds.width;
+        const height = bounds.height;
+        
+        if(width/height < 1/3 || width/height > 3 || width == height){
+            return;
+        }
+
+        if(width > height){
+            points.forEach((point) => {point.y *= (width/height)});
+        } else {
+            points.forEach((point) => {point.x *= (height/width)});
+        }
+
+        bounds = this.getBounds(points);
+    }
 }

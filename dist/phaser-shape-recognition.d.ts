@@ -44,5 +44,6 @@ export default class ShapeRec {
      * @returns { boolean[][] } Matrix of booleans. Each cell of the matrix represents one sector of the image. If in that sector exists some positive alpha then its value will be "true"
      */
     makeMatrix(source: string | Point[], frame?: string | number, resolution?: number): boolean[][];
+    private normalizeAspectRatio;
 }
 export {};
