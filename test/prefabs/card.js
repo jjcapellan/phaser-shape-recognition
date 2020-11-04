@@ -42,7 +42,7 @@ class Card {
 
 
     addHitRatio() {
-        this.textHitRatio = this.sc.add.text(this.x + 50, this.y + 2 * 100 + 2 * MARGIN, '0%').setOrigin(0);
+        this.textHitRatio = this.sc.add.text(this.x + 50, this.y + 2 * 100 + 2 * MARGIN, '0%').setOrigin(0.5);
     }
 
 
