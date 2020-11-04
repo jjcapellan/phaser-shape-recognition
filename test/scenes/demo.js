@@ -5,15 +5,15 @@ class Demo extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('spiral', './assets/imgs/samples/spiral.png');
-        this.load.image('z', './assets/imgs/samples/z.png');
-        this.load.image('v', './assets/imgs/samples/v.png');
-        this.load.image('vline', './assets/imgs/samples/vline.png');
-        this.load.image('hline', './assets/imgs/samples/hline.png');
-        this.load.image('grid', './assets/imgs/square.png');
-        this.load.image('mid', './assets/imgs/squaremid.png');
-        this.load.image('hit', './assets/imgs/squarehit.png');
-        this.load.image('fail', './assets/imgs/squarefail.png');
+        this.load.image('spiral', 'test/assets/imgs/samples/spiral.png');
+        this.load.image('z', 'test/assets/imgs/samples/z.png');
+        this.load.image('v', 'test/assets/imgs/samples/v.png');
+        this.load.image('vline', 'test/assets/imgs/samples/vline.png');
+        this.load.image('hline', 'test/assets/imgs/samples/hline.png');
+        this.load.image('grid', 'test/assets/imgs/square.png');
+        this.load.image('mid', 'test/assets/imgs/squaremid.png');
+        this.load.image('hit', 'test/assets/imgs/squarehit.png');
+        this.load.image('fail', 'test/assets/imgs/squarefail.png');
     }
 
     create() {

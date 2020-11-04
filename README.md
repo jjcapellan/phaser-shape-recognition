@@ -1,7 +1,7 @@
 # Phaser shape recognition
 This class provides some utilities for shape and stroke recognition using [Phaser 3](http://phaser.io/).  
 Can be used to process image data and feed neural networks.  
-Try demo here: https://jjcapellan.github.io/demo-phaser-shape-recognition/
+Try demo here: https://jjcapellan.github.io/phaser-shape-recognition/
 
 <p align="center">
 <img alt="workflow" src="./imgs/working.png"/>
