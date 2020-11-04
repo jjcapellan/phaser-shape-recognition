@@ -74,8 +74,8 @@ class Demo extends Phaser.Scene {
         let rec = shapeRec;
         this.cards.push(
             new Card(this, 50, 0, 'spiral', rec, 'spiral', null, {res: 10, neighbors: useNeighbors}),
-            new Card(this, 200, 0, 'z', rec, 'z', null, {res: 8, neighbors: useNeighbors}),
-            new Card(this, 350, 0, 'v', rec, 'v', null, {res: 8, neighbors: useNeighbors}),
+            new Card(this, 200, 0, 'z', rec, 'z', null, {res: 10, neighbors: useNeighbors}),
+            new Card(this, 350, 0, 'v', rec, 'v', null, {res: 10, neighbors: useNeighbors}),
             new Card(this, 500, 0, 'vline', rec, 'vline', null, {res: 8, neighbors: useNeighbors}),
             new Card(this, 650, 0, 'hline', rec, 'hline', null, {res: 8, neighbors: useNeighbors}));
     }
