@@ -64,6 +64,8 @@ class Demo extends Phaser.Scene {
                 card.neighbors = this.chk_neighbors.value;
             })
         }, this);
+
+        this.add.text(400, 560, 'Draw the shapes with the mouse').setOrigin(0.5);
     }
 
     addChkNeighbors() {
