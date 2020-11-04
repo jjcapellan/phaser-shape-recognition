@@ -4,17 +4,15 @@ class Demo extends Phaser.Scene {
         this.cards = [];
     }
 
+
     preload() {
         this.load.image('spiral', 'test/assets/imgs/samples/spiral.png');
         this.load.image('z', 'test/assets/imgs/samples/z.png');
         this.load.image('v', 'test/assets/imgs/samples/v.png');
         this.load.image('vline', 'test/assets/imgs/samples/vline.png');
         this.load.image('hline', 'test/assets/imgs/samples/hline.png');
-        this.load.image('grid', 'test/assets/imgs/square.png');
-        this.load.image('mid', 'test/assets/imgs/squaremid.png');
-        this.load.image('hit', 'test/assets/imgs/squarehit.png');
-        this.load.image('fail', 'test/assets/imgs/squarefail.png');
     }
+
 
     create() {
 
@@ -59,28 +57,31 @@ class Demo extends Phaser.Scene {
             this.checkStroke(points);
         });
 
-        this.customEmitter.on('chk_neiborgs', () =>{
+        this.customEmitter.on('chk_neiborgs', () => {
             this.cards.forEach((card) => {
                 card.neighbors = this.chk_neighbors.value;
             })
         }, this);
 
-        this.add.text(400, 560, 'Draw the shapes with the mouse').setOrigin(0.5);
+        this.add.text(400, 560, 'Draw the shapes with the mouse.\nPress +/- buttons to change matrix resolution.',{align: 'center'}).setOrigin(0.5);
     }
+
 
     addChkNeighbors() {
         this.chk_neighbors = this.add.existing(new CheckBox(this, 20, 550, 'chk_neiborgs', { color: '0xdddddd', label: { text: 'Activate neighbors', fontSize: 14 } })).setOrigin(0, 0);
     }
 
+
     addCards(shapeRec, useNeighbors) {
         let rec = shapeRec;
         this.cards.push(
-            new Card(this, 50, 0, 'spiral', rec, 'spiral', null, {res: 10, neighbors: useNeighbors}),
-            new Card(this, 200, 0, 'z', rec, 'z', null, {res: 10, neighbors: useNeighbors}),
-            new Card(this, 350, 0, 'v', rec, 'v', null, {res: 10, neighbors: useNeighbors}),
-            new Card(this, 500, 0, 'vline', rec, 'vline', null, {res: 8, neighbors: useNeighbors}),
-            new Card(this, 650, 0, 'hline', rec, 'hline', null, {res: 8, neighbors: useNeighbors}));
+            new Card(this, 50, 0, 'spiral', rec, 'spiral', null, { res: 10, neighbors: useNeighbors }),
+            new Card(this, 200, 0, 'z', rec, 'z', null, { res: 10, neighbors: useNeighbors }),
+            new Card(this, 350, 0, 'v', rec, 'v', null, { res: 10, neighbors: useNeighbors }),
+            new Card(this, 500, 0, 'vline', rec, 'vline', null, { res: 8, neighbors: useNeighbors }),
+            new Card(this, 650, 0, 'hline', rec, 'hline', null, { res: 8, neighbors: useNeighbors }));
     }
+
 
     checkStroke(points) {
         this.cards.forEach((card) => {
